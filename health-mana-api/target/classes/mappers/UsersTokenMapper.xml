@@ -1,0 +1,41 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoohacks.healthmanagement.mappers.UsersTokenMapper">
+	<resultMap id="BaseResultMap" type="com.hoohacks.healthmanagement.models.UsersToken">
+		<id column="id" property="id" />
+		<result column="token" property="token" />
+		<result column="last_check_time" property="lastCheckTime" />
+		<result column="login_expire_time" property="loginExpireTime" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+    	id, token, last_check_time, login_expire_time
+  	</sql>
+	
+	<select id="selectById" resultMap="BaseResultMap">
+		SELECT <include refid="Base_Column_List" />
+		FROM authentication
+		WHERE id = #{id}
+	</select>
+	
+	<insert id="insertSelective" parameterType="com.hoohacks.healthmanagement.models.UsersToken">
+		INSERT INTO authentication (id,token,last_check_time,login_expire_time) VALUES 
+		(#{id},#{token},#{lastCheckTime},#{loginExpireTime})
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.hoohacks.healthmanagement.models.UsersToken">
+		UPDATE authentication SET token = #{token}, last_check_time = #{lastCheckTime}, login_expire_time = #{loginExpireTime}
+		WHERE id = #{id}
+	</update>
+	
+	<select id="selectByToken" resultMap="BaseResultMap">
+		SELECT <include refid="Base_Column_List" /> 
+		FROM authentication
+		WHERE token = #{token}
+	</select>
+	
+	<delete id="deleteTokenByPrimaryKey" parameterType="int">
+		DELETE FROM authentication
+		WHERE id = #{id}
+	</delete>
+	
+</mapper>
