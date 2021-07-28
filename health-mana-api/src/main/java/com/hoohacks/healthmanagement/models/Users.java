@@ -10,7 +10,7 @@ import lombok.Data;
 public class Users {
 	private int id;
 	
-	private String passWord;
+	private String password;
 	
 	private String ssn;
 	
@@ -123,12 +123,12 @@ public class Users {
 		this.vaccinatedStatus = vaccinatedStatus;
 	}
 
-	public String getPassWord() {
-		return passWord;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setPassWord(String passWord) {
-		this.passWord = passWord;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }
 

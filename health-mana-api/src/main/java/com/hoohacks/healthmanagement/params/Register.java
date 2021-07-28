@@ -4,6 +4,8 @@ import lombok.Data;
 
 @Data
 public class Register{
+	private int id;
+	
 	private String ssn;
 	
 	private String firstName;
@@ -42,6 +44,14 @@ public class Register{
 
 	public void setPassWord(String passWord) {
 		this.passWord = passWord;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }

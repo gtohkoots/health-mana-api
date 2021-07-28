@@ -27,8 +27,9 @@ public class UsersService {
     	Users user = usersMapper.selectBySsn(ssn);
     	//如果查询结果不为空
 		if (user != null) {
-			if (!user.getPassWord().equals(password)) {
+			if (user.getPassword().equals(password)) {
 				//密码错误
+				System.out.println(user.getPassword());
 				return new Result(101,"Incorrect Password");
 			}
 			String token = Commons.getRandomString(16);
@@ -83,7 +84,7 @@ public class UsersService {
 		//新建Users对象
 		Users user = new Users();
 		user.setSsn(ssn);
-		user.setPassWord(passWord);
+		user.setPassword(passWord);
 		user.setFirstName(firstName);
 		user.setLastName(lastName);
 		//如果插入方法返回大于0

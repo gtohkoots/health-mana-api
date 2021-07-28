@@ -1,7 +1,10 @@
 package com.hoohacks.healthmanagement.mappers;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.hoohacks.healthmanagement.models.UsersToken;
 
+@Mapper
 public interface UsersTokenMapper {
 	UsersToken selectById(int id);
 

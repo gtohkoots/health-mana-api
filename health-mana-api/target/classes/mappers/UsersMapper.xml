@@ -3,10 +3,10 @@
 <mapper namespace="com.hoohacks.healthmanagement.mappers.UsersMapper">
 	<resultMap id="BaseResultMap" type="com.hoohacks.healthmanagement.models.Users">
 		<id column="id" property="id" />
+		<result column="ssn" property="ssn" />
+		<result column="password" property="password" />
 		<result column="first_name" property="firstName" />
 		<result column="last_name" property="lastName" />
-		<result column="password" property="password" />
-		<result column="ssn" property="ssn" />
 		<result column="address" property="address" />
 		<result column="gender" property="gender" />
 		<result column="postcode" property="postcode" />
@@ -32,7 +32,7 @@
 	
 	<insert id="insert" parameterType="com.hoohacks.healthmanagement.models.Users">
 		INSERT INTO users
-		<trim prefix="("suffix=")" suffixOverrides=",">
+		<trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
             </if>
@@ -75,10 +75,10 @@
         </trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">
-                #{id,jdbcType=INT},
+                #{id,jdbcType=INTEGER},
             </if>
             <if test="firstName != null">
-                #firstName,jdbcType=VARCHAR},
+                #{firstName,jdbcType=VARCHAR},
             </if>
             <if test="lastName != null">
                 #{lastName,jdbcType=VARCHAR},
@@ -93,25 +93,25 @@
                 #{address,jdbcType=VARCHAR},
             </if>
             <if test="gender != null">
-                #{gender,jdbcType=INT},
+                #{gender,jdbcType=INTEGER},
             </if>
             <if test="createTime != null">
-                #{createTime,jdbcType=DATETIME},
+                #{createTime,jdbcType=TIMESTAMP},
             </if>
             <if test="postcode != null">
                 #{postcode,jdbcType=VARCHAR},
             </if>
             <if test="state != null">
-                #{state,jdbcType=INT},
+                #{state,jdbcType=INTEGER},
             </if>
             <if test="city != null">
-                #{city,jdbcType=INT},
+                #{city,jdbcType=INTEGER},
             </if>
             <if test="citizenship != null">
                 #{citizenship,jdbcType=VARCHAR},
             </if>
             <if test="vaccinatedStatus != null">
-                #{vaccinatedStatus,jdbcType=INT},
+                #{vaccinatedStatus,jdbcType=INTEGER},
             </if>
         </trim> 
 	</insert>
@@ -122,13 +122,13 @@
 	      last_name = #{lastName,jdbcType=VARCHAR},
 	      password = #{password,jdbcType=VARCHAR},
 	      address = #{address,jdbcType=VARCHAR},
-	      gender = #{gender,jdbcType=INT},
+	      gender = #{gender,jdbcType=INTEGER},
 	      postcode = #{lockedFlag,jdbcType=VARCHAR},
 	      state = #{state,jdbcType=VARCHAR}
 	      city = #{city,jdbcType=VARCHAR}
 	      citizenship = #{citizenship,jdbcType=VARCHAR}
-	      vaccinated_status = #{vaccinatedStatus,jdbcType=INT}
-	      create_time = #{createTime,jdbcType=DATETIME}
+	      vaccinated_status = #{vaccinatedStatus,jdbcType=INTEGER}
+	      create_time = #{createTime,jdbcType=TIMESTAMP}
 	    WHERE ssn = #{ssn,jdbcType=VARCHAR}
 	</update>
 </mapper>
