@@ -1,0 +1,39 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoohacks.healthmanagement.mappers.DateMapper">
+	<resultMap id="BaseResultMap" type="com.hoohacks.healthmanagement.models.Date">
+		<id column="date_id" property="dateId" />
+		<result column="date" property="date" />
+		<result column="location_id" property="locationId" />
+		<result column="morning_spot" property="morningSpot" />
+		<result column="afternoon_spot" property="afternoonSpot" />
+		<result column="location_name" property="locationName"/>
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+    	date_id, date, location_id, morning_spot, afternoon_spot, location_name
+  	</sql>
+	
+	<select id="checkAvailability" parameterType = "com.hoohacks.healthmanagement.models.Reservation" resultMap="BaseResultMap">
+		SELECT <include refid="Base_Column_List" />
+		FROM date
+		WHERE location_name = #{locationName} AND date = #{date}
+	</select>
+	
+	<select id="displayAvailability" parameterType = "String" resultMap = "BaseResultMap">
+		SELECT <include refid="Base_Column_List" />
+		FROM date
+		WHERE location_name = #{locationName}
+	</select>
+	
+	<update id="morningReservationSuccess" parameterType="com.hoohacks.healthmanagement.models.Date">
+			UPDATE date SET morning_spot = morning_spot - 1
+			WHERE date = #{date} AND location_name = #{locationName};
+	</update>
+	
+	<update id="afternoonReservationSuccess" parameterType="com.hoohacks.healthmanagement.models.Date">
+			UPDATE date SET afternoon_spot = afternoon_spot - 1
+			WHERE date = #{date} AND location_name = #{locationName};
+	</update>
+	
+	
+</mapper>

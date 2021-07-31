@@ -1,0 +1,20 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoohacks.healthmanagement.mappers.ReservationMapper">
+	<resultMap id="BaseResultMap" type="com.hoohacks.healthmanagement.models.Reservation">
+		<result column="date" property="date" />
+		<result column="location_name" property="locationName" />
+		<result column="user_ssn" property="userSsn"/>
+		<result column="time" property="time"/>
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+    	reserve_id, user_ssn, location_name, date, time
+  	</sql>
+	
+	<insert id="insertReservation" parameterType="com.hoohacks.healthmanagement.models.Reservation">
+		INSERT INTO reservation (user_ssn, location_name, date, time) VALUES 
+		(#{userSsn},#{locationName},#{date},#{time})
+	</insert>
+	
+	
+</mapper>
